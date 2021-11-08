@@ -1,16 +1,16 @@
 package ru.netology.radio;
 
 public class Radio {
+    private int amountOfStations = 10;
+    private int currentStation = 0;
+    private int volume = 0;
 
-    private int currentStation;
-    private int volume;
+    public Radio () {}
 
-    public int setVolume(int value){
-        return volume = value;
-    }
-
-    public int getVolume(){
-        return volume;
+    public Radio(int amountOfStations, int currentStation, int volume) {
+        this.amountOfStations = amountOfStations;
+        this.currentStation = currentStation;
+        this.volume = volume;
     }
 
     public int getCurrentStation() {
@@ -19,48 +19,47 @@ public class Radio {
 
 // Требования к работе с радиостанциями:
 
-    public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0 || newCurrentStation > 9) {
+    public void setStation(int station) {
+        if (station < 0 || station >= amountOfStations) {
             return;
         } else {
-            currentStation = newCurrentStation;
+            currentStation = station;
         }
     }
 
-    public void setNextStation(){
-        if (currentStation == 9) {
+    public int nextStation(){
+        if (currentStation == amountOfStations-1) {
             currentStation = 0;
         } else {
             currentStation = currentStation + 1;
-        }
+        }   return currentStation;
     }
 
-    public void setPreviousStation(){
+    public int previousStation(){
         if (currentStation == 0) {
-            currentStation = 9;
+            currentStation = amountOfStations - 1;
         } else {
             currentStation = currentStation - 1;
-        }
+        } return currentStation;
     }
 
 // Требования к работе с уровнем громкости звука:
 
-    public void increaseVolume() {
-        if (volume == 10) {
-            return;
+    public int increaseVolume() {
+        if (volume == 100) {
+            return volume;
         } else {
-            volume = volume + 1;
+            return volume + 1;
         }
     }
 
-    public void decreaseVolume() {
+    public int decreaseVolume() {
         if (volume == 0) {
-            return;
+            return volume;
         } else {
-            volume = volume - 1;
+            return volume - 1;
         }
     }
-
 
 }
 
